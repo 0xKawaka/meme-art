@@ -1,0 +1,61 @@
+.owned-pixels {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 300px;
+  margin: 20px auto;
+  z-index: 2;
+  position: absolute;
+  left: 1vw;
+  top: 1vh;
+}
+
+.owned-pixels-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.no-owned {
+  color: #999;
+  font-style: italic;
+}
+
+.owned-list {
+  list-style: none;
+  padding-left: 0;
+  max-height: 20vh; /* Set max height for the list */
+  overflow-y: auto; /* Enable scrolling within the list */
+  margin-bottom: 10px;
+}
+
+.owned-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  background-color: #fff;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.owned-item:hover {
+  transform: translateY(-3px);
+}
+
+.pixel-info {
+  color: #333;
+  font-weight: bold;
+}
+
+.pixel-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #333;
+}

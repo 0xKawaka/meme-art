@@ -12,7 +12,7 @@ trait IMemeArt {
     fn setQuoteCurrency(ref world: IWorldDispatcher, quoteCurrency: ContractAddress);
     fn setTokenHash(ref world: IWorldDispatcher, tokenHash: ClassHash);
     fn setTokenTotalSupply(ref world: IWorldDispatcher, tokenTotalSupply: u256);
-    fn dojo_init(ref world: IWorldDispatcher);
+    // fn dojo_init(ref world: IWorldDispatcher);
 }
 #[starknet::interface]
 pub trait ITokenDeployer<TContractState> {
@@ -41,13 +41,16 @@ mod MemeArt {
             let drawingsCount = get!(world, 0, (DrawingsCount)).count;
             let settings = get!(world, 0, (Settings));
 
-            let mut tokenCalldata = ArrayTrait::new();
-            tokenCalldata.append(name);
-            tokenCalldata.append(symbol);
-            let result: SyscallResult = deploy_syscall(settings.tokenHash, rdmSalt, tokenCalldata.span(), false);
-            let (tokenAdrs, _) = result.unwrap();
+            let mut calldata: Array<felt252> = array![];
 
-            // let tokenAdrs = 0x123.try_into().unwrap();
+            calldata.append(name);
+            calldata.append(symbol);
+            calldata.append(settings.tokenTotalSupply.low.into());
+            calldata.append(settings.tokenTotalSupply.high.into());
+            let result: SyscallResult = deploy_syscall(settings.tokenHash, rdmSalt, calldata.span(), true);
+            let (tokenAdrs, _) = result.unwrap();
+            // let tokenAdrs = 0x3.try_into().unwrap();
+
             let pricePerPixel: u256 = settings.raiseTarget / (settings.pixelsRowCount.into() * settings.pixelsColumnCount.into());
             let tokenPerPixel: u256 = settings.tokenTotalSupply / (settings.pixelsRowCount.into() * settings.pixelsColumnCount.into()) / 2;
 
@@ -156,13 +159,12 @@ mod MemeArt {
             assert(settings.owner == get_caller_address(), 'Only owner');
             set!(world, (Settings { tokenTotalSupply, ..settings }));
         }
-        fn dojo_init(
-            ref world: IWorldDispatcher,
-        ) {
-            // set!(world, (Settings { key: 0, owner: get_caller_address(), pixelsRowCount: 30, pixelsColumnCount: 30, raiseTarget: u256 { low: 5070602400912917605, high: 0 }, quoteCurrency: 0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d.try_into().unwrap(), tokenHash: 0x0171da80d8c2aed43468b02f18842b9dfeaa14e9e2bd6f99f53cf18a17d748df.try_into().unwrap(), tokenTotalSupply: u256 { low: 9070602400912917605, high: 0 }, selfAdrs: 0x123.try_into().unwrap() }));   
-            // format hash:0x02ae62b66f63844803dd4c9f7095aa3e4f9c7bf61a1f759adf63e87f31c2e989
-            set!(world, (Settings { key: 0, owner: get_caller_address(), pixelsRowCount: 30, pixelsColumnCount: 30, raiseTarget: u256 { low: 12917605, high: 0 }, quoteCurrency: 0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7.try_into().unwrap(), tokenHash: 0x02ae62b66f63844803dd4c9f7095aa3e4f9c7bf61a1f759adf63e87f31c2e989.try_into().unwrap(), tokenTotalSupply: u256 { low: 9070602400912917605, high: 0 } }));   
-        }
+    }
+    fn dojo_init(
+        ref world: IWorldDispatcher,
+    ) {
+        set!(world, (Settings { key: 0, owner: get_caller_address(), pixelsRowCount: 30, pixelsColumnCount: 30, raiseTarget: u256 { low: 12917605, high: 0 }, quoteCurrency: 0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7.try_into().unwrap(), tokenHash: 0x02ae62b66f63844803dd4c9f7095aa3e4f9c7bf61a1f759adf63e87f31c2e989.try_into().unwrap(), tokenTotalSupply: u256 { low: 9070602400912917605, high: 0 } }));   
+        // set!(world, (Settings { key: 0, owner: get_caller_address(), pixelsRowCount: 30, pixelsColumnCount: 30, raiseTarget: u256 { low: 12917605, high: 0 }, quoteCurrency: 0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7.try_into().unwrap(), tokenHash: 0x0171da80d8c2aed43468b02f18842b9dfeaa14e9e2bd6f99f53cf18a17d748df.try_into().unwrap(), tokenTotalSupply: u256 { low: 9070602400912917605, high: 0 } }));   
     }
 
 }

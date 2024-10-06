@@ -1,0 +1,46 @@
+/* Drawing.css */
+.DrawingView {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: gainsboro;
+}
+
+.pixel-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+}
+
+.pixel {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.controls {
+  margin-bottom: 20px;
+}
+
+.pending-pixels {
+  margin-bottom: 20px;
+}
+
+.pending-pixels ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.color-selector {
+  position: absolute;
+  z-index: 2;
+  bottom: 5%;
+}
+

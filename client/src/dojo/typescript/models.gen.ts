@@ -30,6 +30,12 @@ export const ByteArrayDefinition = {
     
 };
 
+export const U256Definition = {
+    low: RecsType.BigInt,
+    high: RecsType.BigInt,
+    
+};
+
 // Type definition for `memeart::models::Drawing::Drawing` struct
 export interface Drawing {
     id: Number;
@@ -78,11 +84,7 @@ export interface U256 {
     high: BigInt;
     
 }
-export const U256Definition = {
-    low: RecsType.BigInt,
-    high: RecsType.BigInt,
-    
-};
+
 
 
 // Type definition for `memeart::models::Drawing::DrawingsCount` struct

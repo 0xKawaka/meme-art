@@ -1,0 +1,54 @@
+.wallet-wrapper-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content:end;
+  padding: 1rem;
+}
+
+.wallet-wrapper-connect {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px 15px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.wallet-wrapper-connect:hover {
+  background-color: #45a049;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.wallet-wrapper-connect:active {
+  background-color: #3e8e41;
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.wallet-wrapper-address {
+  padding: 10px 20px;
+  background-color: #f1f1f1;
+  color: #333;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  max-width: 100%;
+  word-wrap: break-word;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  cursor: pointer;
+  width: 17rem;
+}
+
+.wallet-wrapper-address:hover {
+  background-color: #eaeaea;
+}

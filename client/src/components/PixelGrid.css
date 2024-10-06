@@ -1,0 +1,11 @@
+.pixel-grid-container {
+  cursor: grab;
+}
+
+.pixel-grid-container:active {
+  cursor: grabbing;
+}
+
+.row {
+  display: flex;
+}
